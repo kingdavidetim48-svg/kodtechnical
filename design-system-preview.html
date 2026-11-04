@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOD Technical Services — Design System Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --color-navy-void: #050814;
+      --color-navy-base: #0A1128;
+      --color-navy-surface: #101C3D;
+      --color-navy-elevated: #172554;
+      --color-border-subtle: rgba(255, 255, 255, 0.08);
+      --color-border-active: rgba(245, 158, 11, 0.40);
+      --color-text-primary: #F8FAFC;
+      --color-text-secondary: #CBD5E1;
+      --color-text-muted: #94A3B8;
+      --color-amber-primary: #F59E0B;
+      --color-amber-hover: #D97706;
+      --color-amber-subtle: rgba(245, 158, 11, 0.12);
+      --color-cyan-telemetry: #06B6D4;
+      --color-success-green: #10B981;
+      --color-error-red: #EF4444;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 3px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+
+      --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-normal: 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-navy-void);
+      color: var(--color-text-secondary);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 24px;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* Header & Title */
+    .preview-header {
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 28px;
+      margin-bottom: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-amber-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-success-green);
+      box-shadow: 0 0 10px var(--color-success-green);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .meta-box {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: var(--color-navy-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      color: var(--color-text-muted);
+    }
+
+    .meta-box strong {
+      color: var(--color-text-primary);
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 64px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border-subtle);
+    }
+
+    /* Grid Layouts */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 32px;
+    }
+
+    /* Color Swatches */
+    .swatch-card {
+      background: var(--color-navy-base);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch-color {
+      height: 80px;
+      width: 100%;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .swatch-info {
+      padding: 14px 16px;
+    }
+
+    .swatch-name {
+      font-weight: 600;
+      color: var(--color-text-primary);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-amber-primary);
+    }
+
+    .swatch-role {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    /* Typography Specimens */
+    .type-specimen {
+      background: var(--color-navy-base);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .type-row {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-amber-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Component: Buttons */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--color-amber-primary);
+      color: var(--color-navy-void);
+      border: 1px solid var(--color-amber-hover);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-amber-hover);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--color-navy-surface);
+      color: var(--color-text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-navy-elevated);
+      border-color: var(--color-amber-primary);
+      color: var(--color-text-primary);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-amber-primary);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 10px 16px;
+    }
+
+    .btn-ghost:hover {
+      color: #fff;
+    }
+
+    .btn-ghost span {
+      transition: transform var(--transition-fast);
+    }
+
+    .btn-ghost:hover span {
+      transform: translateX(4px);
+    }
+
+    .emergency-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 8px 16px;
+      border-radius: 4px;
+      color: #34D399;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .emergency-pill:hover {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #34D399;
+    }
+
+    .ping-circle {
+      width: 8px;
+      height: 8px;
+      background: #10B981;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .ping-circle::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.4);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.6);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.6);
+        opacity: 0;
+      }
+    }
+
+    /* Component: Service Card */
+    .service-card {
+      background: var(--color-navy-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-top: 2px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .service-card:hover {
+      border-top-color: var(--color-amber-primary);
+      border-color: var(--color-border-active);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .service-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-amber-primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.3;
+    }
+
+    .service-card p {
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--color-navy-base);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--color-text-muted);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Component: Stat Card */
+    .stat-card {
+      background: var(--color-navy-base);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: left;
+    }
+
+    .stat-numeral {
+      font-family: var(--font-mono);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--color-amber-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+    }
+
+    /* Component: Form Elements */
+    .form-box {
+      background: var(--color-navy-base);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    label span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-amber-primary);
+    }
+
+    input,
+    select,
+    textarea {
+      background: var(--color-navy-void);
+      border: 1px solid #1E293B;
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--color-amber-primary);
+      box-shadow: 0 0 0 1px var(--color-amber-primary);
+    }
+
+    .input-error {
+      border-color: var(--color-error-red) !important;
+    }
+
+    .field-hint-error {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-error-red);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Logo Modernization Specimen */
+    .logo-specimen {
+      background: var(--color-navy-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .vector-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-emblem {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #101C3D 0%, #172554 100%);
+      border: 1.5px solid var(--color-amber-primary);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .logo-emblem svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--color-amber-primary);
+    }
+
+    .logo-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .brand-subline {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-amber-primary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* Accessibility / Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 16px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="preview-header">
+      <div>
+        <div class="kicker">
+          <span class="kicker-dot"></span>
+          KOD Technical Services • Design System v2.0
+        </div>
+        <h1>Visual Identity & Design System Specification</h1>
+      </div>
+      <div class="meta-box">
+        Sector: <strong>Rotating Equipment & Oilfield Engineering</strong><br>
+        Headquarters: <strong>Port Harcourt, Rivers State, Nigeria</strong>
+      </div>
+    </header>
+
+    <!-- 1. Color Palette Tokens -->
+    <section>
+      <div class="section-title">01. Precision Architectural & Telemetry Palette</div>
+      <div class="grid-4">
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #050814;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy Void</div>
+            <div class="swatch-hex">#050814</div>
+            <div class="swatch-role">Ultra-deep page base & hero scrims</div>
+          </div>
+        </div>
+
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #0A1128;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy Base</div>
+            <div class="swatch-hex">#0A1128</div>
+            <div class="swatch-role">Primary canvas & form enclosures</div>
+          </div>
+        </div>
+
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #101C3D;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy Surface</div>
+            <div class="swatch-hex">#101C3D</div>
+            <div class="swatch-role">Service cards & dropdown panels</div>
+          </div>
+        </div>
+
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #F59E0B;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Safety Amber</div>
+            <div class="swatch-hex">#F59E0B</div>
+            <div class="swatch-role">Primary action CTA & rotating focus</div>
+          </div>
+        </div>
+
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #06B6D4;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cyan Telemetry</div>
+            <div class="swatch-hex">#06B6D4</div>
+            <div class="swatch-role">Condition monitoring & 3D nodes</div>
+          </div>
+        </div>
+
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #10B981;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Operational Green</div>
+            <div class="swatch-hex">#10B981</div>
+            <div class="swatch-role">Verified operational & live emergency dial</div>
+          </div>
+        </div>
+
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #F8FAFC;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Technical White</div>
+            <div class="swatch-hex">#F8FAFC</div>
+            <div class="swatch-role">Headings & primary technical readout</div>
+          </div>
+        </div>
+
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #94A3B8;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Machined Silver</div>
+            <div class="swatch-hex">#94A3B8</div>
+            <div class="swatch-role">Engineering metadata & specifications</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Typography Scale -->
+    <section>
+      <div class="section-title">02. Industrial Typography Hierarchy</div>
+      <div class="type-specimen">
+        <div class="type-row">
+          <div class="type-meta">Display 1 (Syne 800 • 56px)</div>
+          <div
+            style="font-family: var(--font-display); font-size: 44px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.02em;">
+            Heavy Rotating Machinery Overhaul & Precision Engineering
+          </div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">Heading 2 (Syne 700 • 28px)</div>
+          <div
+            style="font-family: var(--font-display); font-size: 28px; font-weight: 700; color: #fff; line-height: 1.2;">
+            11 Specialized Engineering Capabilities in Port Harcourt
+          </div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">Body Large (Inter 400 • 17px)</div>
+          <div
+            style="font-family: var(--font-body); font-size: 17px; color: var(--color-text-secondary); line-height: 1.6;">
+            KOD Technical Services delivers precision maintenance, dynamic balancing, and laser alignment for critical
+            multi-stage pumps, high-ratio gearboxes, and refinery process equipment across Rivers State and the Niger
+            Delta.
+          </div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">Technical Kicker & Telemetry (JetBrains Mono 700 • 12px)</div>
+          <div
+            style="font-family: var(--font-mono); font-size: 13px; color: var(--color-amber-primary); letter-spacing: 0.08em; text-transform: uppercase;">
+            [// SPEC: API 610 11TH ED • SHAFT ALIGNMENT TOLERANCE: &lt; 0.03mm • ISO 10816-3 VIBRATION CLASS II]
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Interactive Components -->
+    <section>
+      <div class="section-title">03. Shared Component Specifications</div>
+      <div class="grid-2">
+        <!-- Interactive Controls -->
+        <div class="type-specimen" style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="type-meta">Button & Interactive States</div>
+          <div class="btn-group">
+            <button class="btn btn-primary">
+              Request Technical Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+            <button class="btn btn-secondary">Explore Capabilities</button>
+          </div>
+
+          <div class="btn-group">
+            <a href="tel:+2348037270249" class="emergency-pill">
+              <span class="ping-circle"></span>
+              24/7 Breakdown Hotline: +234 (0) 803 727 0249
+            </a>
+            <a href="#" class="btn btn-ghost">
+              Read Engineering Case Study <span>→</span>
+            </a>
+          </div>
+
+          <div class="type-meta" style="margin-top: 8px;">Interactive Metric Showcase</div>
+          <div class="grid-2" style="gap: 16px;">
+            <div class="stat-card">
+              <div class="stat-numeral">11</div>
+              <div class="stat-label">Core Technical Disciplines</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-numeral">&lt; 0.03<span style="font-size: 20px;">mm</span></div>
+              <div class="stat-label">Precision Laser Alignment</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Card Component -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="type-meta">Service Card (Hover to test transition)</div>
+          <div class="service-card">
+            <div class="service-index">[// 05. OVERHAULING]</div>
+            <h3>Rotating Equipment Overhaul</h3>
+            <p>
+              Complete disassembly, ultrasonic cleaning, dimensional inspection, dynamic balancing, and reassembly of
+              severe-service centrifugal pumps and industrial gearboxes to OEM tolerances.
+            </p>
+            <div class="tag-group">
+              <span class="tech-tag">API 610 Centrifugal</span>
+              <span class="tech-tag">Split-Case</span>
+              <span class="tech-tag">Gearbox Rebuild</span>
+              <span class="tech-tag">Hydro-Testing</span>
+            </div>
+            <div style="margin-top: 8px;">
+              <a href="#" class="btn btn-ghost" style="padding: 0;">Scope & Inspection Protocol <span>→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Form Standards -->
+    <section>
+      <div class="section-title">04. Industrial Data Capture & Field Validation</div>
+      <div class="grid-2">
+        <div class="form-box">
+          <div class="type-meta">Direct Technical Quotation Builder</div>
+          <div class="field-group">
+            <label for="company">Client Organization / Operating Facility <span>*</span></label>
+            <input type="text" id="company" placeholder="e.g. TotalEnergies E&P Nigeria / Port Harcourt Refinery"
+              value="Port Harcourt Marine Terminal">
+          </div>
+
+          <div class="field-group">
+            <label for="service-type">Required Engineering Service <span>*</span></label>
+            <select id="service-type">
+              <option>Laser Alignment & Dynamic Balancing</option>
+              <option selected>Centrifugal Pump Overhaul & Hydrotest</option>
+              <option>OEM Parts & Mechanical Seal Procurement</option>
+              <option>Turnkey Rig-Site Equipment Installation</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="email">Engineering Contact Email <span>*</span></label>
+            <input type="email" id="email" class="input-error" value="invalid-email-format">
+            <div class="field-hint-error">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Please provide a valid corporate email for technical scope delivery.
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="justify-content: center; width: 100%;">
+            Submit Specification For Review
+          </button>
+        </div>
+
+        <!-- Brand Asset Strategy Card -->
+        <div class="type-specimen"
+          style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px;">
+          <div>
+            <div class="type-meta">Brand Identity & Logo Treatment Protocol</div>
+            <h3 style="font-family: var(--font-display); font-size: 20px; color: #fff; margin: 12px 0 8px 0;">
+              Interim High-DPI Vector Lockup
+            </h3>
+            <p style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 20px;">
+              To resolve the severe pixelation of the legacy 5.8KB screenshot without misrepresenting an unofficial
+              vector asset, the web application renders a crisp, high-DPI engineering emblem lockup alongside an active
+              request to the CEO for the official vector master file.
+            </p>
+
+            <div class="logo-specimen">
+              <div class="vector-logo-container">
+                <div class="logo-emblem">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 3a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z" />
+                    <path d="M2.5 9h19M2.5 15h19" />
+                  </svg>
+                </div>
+                <div class="logo-text-group">
+                  <div class="brand-title">KOD TECHNICAL</div>
+                  <div class="brand-subline">SERVICES NIGERIA • PORT HARCOURT</div>
+                </div>
+              </div>
+              <span class="tech-tag"
+                style="color: var(--color-amber-primary); border-color: rgba(245, 158, 11, 0.3);">INTERIM HI-DPI
+                VECTOR</span>
+            </div>
+          </div>
+
+          <div
+            style="border-top: 1px solid var(--color-border-subtle); padding-top: 14px; font-size: 12px; color: var(--color-text-muted); font-family: var(--font-mono);">
+            STATUS: Legacy raster archived in /scratch • Official vector requested from CEO
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Note -->
+    <footer
+      style="border-top: 1px solid var(--color-border-subtle); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted); flex-wrap: wrap; gap: 12px;">
+      <div>KOD TECHNICAL SERVICES • CHAPTER 2 DESIGN SYSTEM SPECIFICATION</div>
+      <div>WCAG 2.1 AA COMPLIANT • PREFERS-REDUCED-MOTION SUPPORTED</div>
+    </footer>
+  </div>
+
+</body>
+
+</html>
