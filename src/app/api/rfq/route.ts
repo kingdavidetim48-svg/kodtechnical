@@ -274,6 +274,13 @@ export async function POST(request: Request) {
   const dispatchResult = await sendRfqEmail(validatedData);
 
   if (!dispatchResult.success) {
+    // Map Formspree error types to appropriate HTTP status codes
+    let errorStatus = 502; // Default: bad gateway (provider error)
+    if (dispatchResult.error === "unconfigured") errorStatus = 503;
+    else if (dispatchResult.error === "provider_rate_limit") errorStatus = 503;
+    else if (dispatchResult.error === "provider_validation") errorStatus = 502;
+    else if (dispatchResult.error === "aborted") errorStatus = 504;
+
     // Graceful error response with fallback contact channels
     return NextResponse.json(
       {
@@ -291,7 +298,7 @@ export async function POST(request: Request) {
         },
       },
       {
-        status: dispatchResult.error === "unconfigured" ? 503 : 502,
+        status: errorStatus,
         headers: {
           "X-RateLimit-Limit": String(rateLimit.limit),
           "X-RateLimit-Remaining": String(rateLimit.remaining),
