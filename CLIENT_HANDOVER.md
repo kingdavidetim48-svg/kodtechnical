@@ -85,16 +85,21 @@ Each engineering discipline features its own dedicated detail route containing t
 6. **Confirmation Screen:** The client receives an instant visual confirmation modal displaying their unique Reference ID and expected response window (24–48 hours).
 
 ### 5.2 How KOD Technical Services Receives Enquiries
-The quotation dispatch engine uses **Resend** (an enterprise transactional email infrastructure provider) to dispatch formatted lead packages:
-- **Email Subject:** `[KOD-RFQ-YYYYMMDD-XXXX] New RFQ: <Service Title> — <Company Name>`
-- **Email Body:** Structured HTML email containing:
+The quotation dispatch engine uses **Formspree** (configured form endpoint `https://formspree.io/f/mnpaljrr`) to forward structured quotation packages directly to KOD Technical Services' designated corporate inbox (`info@kodtechnical.com`, configured via the Formspree dashboard):
+- **Email Subject:** `New KOD Technical Services RFQ — <Client Full Name>`
+- **Email Body & Lead Packaging:** Structured transmission containing:
   - Client full name, title, and organization
-  - Verified work email (with direct 1-click Reply-To)
+  - Verified work email (Formspree automatically sets direct 1-click Reply-To)
   - International telephone number (with direct `tel:` click-to-call)
+  - Preferred contact method (Email / Telephone / WhatsApp)
   - Engineering discipline selected
-  - Detailed equipment operating symptoms and scope
-  - Project location and timeline
+  - Project / field location
+  - Estimated timeline
+  - Detailed equipment operating symptoms and scope of work
+  - Additional engineering specifications / notes
   - Timestamp (West Africa Time / Lagos)
+  - Audit-compliant Reference ID (`KOD-RFQ-YYYYMMDD-XXXX`)
+  - Full structured plain-text summary attachment
 - **Fallback Telephone & WhatsApp:** If serverless network connectivity is temporarily interrupted, the form gracefully displays KOD's direct Port Harcourt telephone lines (`+234 803 727 0249`, `+234 807 177 1174`) and direct WhatsApp dispatch link.
 
 ---
@@ -126,12 +131,13 @@ The web platform is designed to connect to the following external cloud services
 1. **Vercel (Hosting & Serverless Compute):**  
    - Serves static assets from edge locations globally.  
    - Executes the serverless RFQ API (`POST /api/rfq`).
-2. **Resend (Transactional Email Delivery):**  
-   - Handles email dispatch to KOD's inboxes.  
-   - Requires a free or pro account at `https://resend.com`.
+2. **Formspree (Form Processing & Lead Dispatch):**  
+   - Forwards verified RFQ submissions directly to KOD's corporate inbox (`info@kodtechnical.com`).  
+   - Form endpoint: `https://formspree.io/f/mnpaljrr`.  
+   - Recipient inbox management, email formatting, and spam filtering are managed directly within the Formspree dashboard (`https://formspree.io`). No private API keys, SMTP credentials, or custom domain DNS verification are required on Vercel.
 3. **Upstash Redis (Edge-Wide Distributed Rate Limiting):**  
    - Prevents distributed DDoS and automated spam attempts across serverless instances.  
-   - Free tier available at `https://upstash.com`.
+   - Free tier available at `https://upstash.com` (optional; built-in in-process limiter active as fallback).
 4. **Google Maps & WhatsApp:**  
    - Direct navigation link to Stellian Road, Port Harcourt.  
    - Pre-formatted WhatsApp customer service chat.
@@ -158,15 +164,16 @@ Before launching under the permanent custom domain and activating live email dis
 - **Current State:** The legacy website linked to a defunct Google Doc that returned HTTP 410 Gone. The download button has been disabled pending an official document.
 - **CEO Action Required:** Provide an up-to-date, approved corporate profile / capability statement in PDF format (recommended filename: `KOD-Technical-Services-Capability-Statement.pdf`) to be hosted directly on the website for asset managers to download.
 
-### Item 5: Production Email & Rate Limiting Credentials
-- **Current State:** The production API on Vercel currently operates with `RFQ_MOCK_DELIVERY=true` to protect KOD's inbox during testing.
-- **Client Action Required:** Configure the following production environment variables in the Vercel Project Settings:
-  - `RESEND_API_KEY`: API key from verified Resend account.
-  - `RFQ_SENDER_EMAIL`: E.g., `"KOD Engineering Desk <quotes@kodtechnical.com>"`.
-  - `RFQ_RECIPIENT_EMAIL`: E.g., `info@kodtechnical.com` (or designated quote recipients).
-  - `RFQ_MOCK_DELIVERY`: Set to `false` for live inbox delivery.
-  - `UPSTASH_REDIS_REST_URL`: Distributed Redis REST endpoint.
-  - `UPSTASH_REDIS_REST_TOKEN`: Distributed Redis REST security token.
+### Item 5: Live Formspree Email Delivery & Production Settings
+- **Current State:** The production API on Vercel currently operates with `RFQ_MOCK_DELIVERY=true` to protect KOD's inbox during testing, returning mock confirmation (`isMock: true`).
+- **Client Action Required:**
+  1. **Disable Mock Delivery in Vercel:** Set environment variable `RFQ_MOCK_DELIVERY=false` in Vercel Project Settings (Environment Variables) for Production to enable live Formspree transmission.
+  2. **Verify Formspree Recipient Configuration:** Log in to the [Formspree Dashboard](https://formspree.io) and confirm that form `mnpaljrr` is configured to forward notifications to `info@kodtechnical.com` (or designated engineering quotation recipients).
+  3. **No Resend Credentials Required:** The production delivery engine communicates with Formspree natively; no Resend API key, sender domain DKIM/SPF configuration, or third-party email account is required on Vercel.
+  4. **Optional Distributed Rate Limiting (Upstash Redis):**
+     - `UPSTASH_REDIS_REST_URL`: Distributed Redis REST endpoint.
+     - `UPSTASH_REDIS_REST_TOKEN`: Distributed Redis REST security token.
+     *(Optional: if unconfigured, the application runs safely using its built-in in-memory rate limiter.)*
 
 ---
 

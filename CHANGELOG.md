@@ -1,6 +1,44 @@
 # Changelog — KOD Technical Services Website Rebuild
 
-All notable changes across the 12 execution chapters will be documented in this file.
+All notable changes across the 14 execution chapters will be documented in this file.
+
+---
+
+## [Chapter 14: Live RFQ Delivery Activation Readiness] — 2026-11-18
+
+### Added
+- `CHAPTER_14_LIVE_DELIVERY_READINESS_REPORT.md` — Comprehensive live delivery readiness report covering forensic code audits of `sender.ts` and `route.ts`, environment variable requirements, zero Resend dependencies verification, security posture, empirical test evidence, and a 6-step production activation checklist.
+- `scripts/test-chapter-14-readiness.mjs` — Automated 35-assertion test suite validating code architecture, HTTP security, rate limiting, anti-spam traps, 60s duplicate prevention, mock mode behavior, and error response safety.
+
+### Audited & Verified
+- **Formspree Pipeline Configuration**: Verified default endpoint (`https://formspree.io/f/mnpaljrr`), `startsWith` URL guard, `Content-Type: application/json`, `Accept: application/json`, and 10-second `AbortSignal` timeout ceiling.
+- **Safe Mock / Live Switching**: Verified `RFQ_MOCK_DELIVERY === "true"` evaluation safely halts network I/O and returns `isMock: true` prior to dispatch.
+- **Zero Resend Footprint in Runtime**: Re-verified zero dependencies in `package.json` and zero references to `resend` or `RESEND_API_KEY` across all `src/` modules.
+- **Security & Privacy Posture**: Verified zero leakage of environment secrets, internal stack traces, or Formspree URLs in client responses; verified honeypot, speed-trap, and 60-second duplicate submission protections.
+- **Production Activation Readiness**: Documented precise steps for Vercel environment variable configuration, redeployment, Formspree notification routing, and actual inbox delivery confirmation.
+
+### Updated
+- `src/lib/email/sender.ts` — Added ESLint directive to permit audit logging of accepted Formspree submissions while satisfying `no-console` rule.
+- `IMPLEMENTATION_STATUS.md` — Updated Chapter progress matrix with Chapter 14, recorded Chapter 14 summary, updated outstanding CEO responsibilities, and updated final project status.
+
+---
+
+## [Chapter 13: Production RFQ Delivery Verification & Formspree Reconciliation] — 2026-11-06
+
+### Added
+- `CHAPTER_13_FORMSPREE_AUDIT.md` — Forensic architectural and security audit of the Formspree delivery pipeline, covering code implementation, mock vs live modes, and legacy Resend reconciliation.
+- `CHAPTER_13_PRODUCTION_VERIFICATION_REPORT.md` — Final production verification report documenting live RFQ testing evidence, environment configuration, inbox receipt status, and client handover instructions.
+- `scripts/test-ch13-formspree.mjs` — Dedicated Chapter 13 test suite covering 28 assertions across RFQ security regressions, mock delivery behavior, and rate limiting.
+
+### Updated
+- `CLIENT_HANDOVER.md` — Reconciled legacy Resend instructions with the native Formspree architecture; confirmed no Resend API keys or custom sender domain DNS records are needed on Vercel.
+- `IMPLEMENTATION_STATUS.md` — Updated progress matrix with Chapter 13, modernized transactional email engine description, updated outstanding CEO responsibilities, and revised project status.
+
+### Verified (Production Endpoint)
+- **Live Endpoint Availability**: `https://kodtechnical.vercel.app/api/rfq` verified responsive over public HTTPS.
+- **Controlled Verification Submission**: Executed single controlled RFQ submission returning HTTP 200 OK with reference ID `KOD-RFQ-20261106-4D74`.
+- **Pre-Launch Mock Protection Confirmed**: Response confirmed `isMock: true`, verifying that the production deployment is currently in mock safety mode until the client switches `RFQ_MOCK_DELIVERY=false` in Vercel.
+- **Formspree Delivery Readiness**: Verified that `sendRfqEmail()` is fully wired to dispatch to `https://formspree.io/f/mnpaljrr` with structured payload and 10-second timeout once mock mode is disabled.
 
 ---
 

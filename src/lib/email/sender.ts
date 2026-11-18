@@ -147,6 +147,7 @@ export async function sendRfqEmail(data: ValidatedRfqData): Promise<EmailDispatc
 
     // 2a. Success: Formspree accepted the submission
     if (response.ok && responseData.ok === true) {
+      // eslint-disable-next-line no-console
       console.info(
         `[RFQ-FORMSPREE] Submission accepted for ${data.referenceId} (${data.companyName}).`
       );
