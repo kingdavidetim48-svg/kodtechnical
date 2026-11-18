@@ -1,6 +1,79 @@
 # Changelog — KOD Technical Services Website Rebuild
 
-All notable changes across the 14 execution chapters will be documented in this file.
+All notable changes across the 15 execution chapters will be documented in this file.
+
+---
+
+## [Chapter 15: Golden Precision Design System Overhaul & Premium Visual Redesign] — 2026-11-19
+
+### Design System Changes
+- **Colour palette replaced** — Deep blue-navy (`#050814`, `#0A1128`, `#101C3D`) replaced with warm charcoal void (`#06080D`, `#0B0E17`, `#111622`, `#171E2D`); `navy.*` token names preserved for backward compatibility
+- **Gold accent upgraded** — Safety amber `#F59E0B` replaced with Champagne Gold `#C5A059` / `#D4AF37` as the primary accent; `amber-primary` token now resolves to `#C5A059`
+- **Warm ivory palette introduced** — `#F7F5EE` (ivory-100) used as editorial section breakout background; `ivory-50` through `ivory-400` tokens added
+- **New gold token scale added** — `gold-100` through `gold-700`, `gold-muted`, `gold-glow`, `gold-glow-lg` shadow tokens in `tailwind.config.ts`
+- **New CSS utility classes** in `globals.css` → `@layer utilities`:
+  - `gold-hairline` — precision metallic gradient rule
+  - `gold-datum-left` — left-border gold callout
+  - `card-gold-top` — hover gold top border via pseudo-element
+  - `card-hover-gold` — gold border + glow on hover
+  - `card-gold-top-active` — persistent gold top border
+  - `text-gradient-gold`, `text-gradient-champagne` — editorial text gradients
+
+### Component Updates
+- **`src/components/ui/button.tsx`** — Added `gold` and `dark` variants; `primary` variant gradient updated to champagne gold (`#C5A059 → #D4AF37 → #B28D46`); active text color `#06080D`
+- **`src/components/ui/badge.tsx`** — Added `gold` (new default), `ivory`, `dark` variants; existing variants updated to gold accent
+
+### Layout Components
+- **`src/components/layout/header.tsx`** — Full upgrade: charcoal `#06080D` background; champagne gold active nav indicators; gold ring focus states; engineering micro-utility bar (desktop); precision `gold-hairline` datum; gold logo drop-shadow
+- **`src/components/layout/footer.tsx`** — Full upgrade: charcoal background; `gold-hairline` top; gold gradient CTA; champagne gold heading decorators; improved contact column layout
+
+### Pages Rewritten — New Visual Language
+
+#### Homepage (`src/app/page.tsx`)
+- 7-section complete rewrite in Golden Precision visual language
+- Cinematic hero with champagne gold ambient lighting + precision HUD frame
+- Engineering metrics bar in gold
+- Golden services grid with `card-gold-top` interactions
+- **Warm ivory editorial contrast section** (alternating section rhythm established)
+- Field portfolio, company section, high-conversion RFQ band
+- Staggered entrance motion on hero (CSS keyframe-based, respects `prefers-reduced-motion`)
+
+#### About (`src/app/about/page.tsx`)
+- Full rewrite: charcoal header, gold mission/vision editorial cards, warm ivory philosophy breakout, charcoal facility section
+
+#### Services (`src/app/services/page.tsx`)
+- Full rewrite: charcoal header, gold service grid with hover interactions, gold CTA conversion card
+
+#### Service Detail (`src/app/services/[slug]/page.tsx`)
+- Full rewrite: charcoal header, gold service detail body, gold sticky sidebar RFQ card, gold related disciplines strip
+
+#### Projects (`src/app/projects/page.tsx`)
+- Full rewrite: charcoal header, enhanced photo gallery with gold hover borders, operational domains grid in gold, **warm ivory challenges breakout**, gold CTA band
+
+#### Contact (`src/app/contact/page.tsx`)
+- Full rewrite: charcoal header, gold contact channel cards, gold RFQ specification checklist
+
+#### Privacy & Terms (`src/app/privacy/page.tsx`, `src/app/terms/page.tsx`)
+- Updated to charcoal/gold styling consistent with new brand language
+
+### Form Component
+- **`src/components/contact/contact-enquiry-form.tsx`** — Wrapper and header upgraded to `bg-[#111622]`, `border-[#C5A059]/35`, HUD corner bracket frame, gold-glow shadow; form field styles remain functionally unchanged (tokens remap correctly)
+
+### Quality Gates
+- `npm run type-check` → **Exit 0**
+- `npm run lint` → **Exit 0** (No ESLint warnings or errors)
+- `npm run build` → **Exit 0** — 24 static pages generated
+  - 11 service slug routes
+  - 13 additional routes (/, /about, /services, /projects, /contact, /privacy, /terms, /api/rfq, /robots.txt, /sitemap.xml, /_not-found)
+
+### Documentation Updated
+- `DESIGN_SYSTEM.md` — Chapter 15 section added (Section 8): full palette, tokens, utility classes, component variants, section alternation pattern
+- `IMPLEMENTATION_STATUS.md` — Chapter 15 row added to progress matrix
+- `TESTING.md` — Chapter 15 test audit section added
+- `CHANGELOG.md` — This entry
+
+### Created
+- `CHAPTER_15_PREMIUM_REDESIGN_REPORT.md` — Full design and implementation report
 
 ---
 

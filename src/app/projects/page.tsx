@@ -12,6 +12,10 @@ import { COMPANY_INFO } from "@/lib/constants";
 import {
   Phone,
   CheckCircle2,
+  RotateCw,
+  Wrench,
+  Activity,
+  Layers,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -113,60 +117,132 @@ export default function ProjectsPage() {
       challenge:
         "Angular and offset misalignment between drivers and driven equipment generates severe cyclic loading on bearings, elevates operating temperatures, and shears flexible coupling elements.",
       resolution:
-        "Optical and laser alignment protocols calculate accurate shim corrections and account for thermal growth offsets.",
+        "Dual-beam laser alignment protocols calculate micrometer shim corrections and precisely offset thermal growth expansion.",
+      icon: <RotateCw className="w-5 h-5 text-[#8C733E]" />,
     },
     {
       title: "Casing Internal Wear & Flow Loss",
       challenge:
-        "Corrosive or abrasive process fluids erode internal casing wear rings and bearing housings, causing significant internal recirculation and loss of discharge pressure.",
+        "Corrosive or abrasive process fluids erode internal casing wear rings and bearing housings, causing significant internal bypass and loss of discharge pressure.",
       resolution:
         "In-house machine shop line-boring, wear-ring fabrication, and precision lathe turning in our Port Harcourt engineering center.",
+      icon: <Wrench className="w-5 h-5 text-[#0891B2]" />,
     },
     {
-      title: "Rotor Unbalance & High Vibration",
+      title: "Rotor Dynamic Unbalance & Vibration",
       challenge:
-        "Uneven impeller wear, cavitation pitting, or mechanical damage introduces dynamic unbalance, leading to rapid seal degradation and structural fatigue.",
+        "Uneven impeller wear, cavitation pitting, or mechanical damage introduces dynamic unbalance, leading to rapid seal failure and structural fatigue.",
       resolution:
-        "Dynamic balancing of rotating impellers, shafts, and rotor assemblies to reduce residual unbalance to acceptable operational levels.",
+        "Dynamic balancing of rotating impellers, shafts, and rotor assemblies to ISO 1940-1 Grade G2.5 balance tolerances.",
+      icon: <Activity className="w-5 h-5 text-[#059669]" />,
     },
     {
       title: "Obsolete or Hard-to-Find Spares",
       challenge:
         "Legacy equipment often suffers extended downtime when original equipment parts become difficult to source through standard commercial channels.",
       resolution:
-        "Technical procurement and component re-engineering to supply or fabricate compatible, durable replacement parts.",
+        "Technical procurement and component re-engineering to supply or fabricate certified, metallurgy-matched replacement parts.",
+      icon: <Layers className="w-5 h-5 text-[#0E121A]" />,
+    },
+  ];
+
+  const fieldPhotos = [
+    {
+      src: "/images/engineering/field-spdc-fuel-gas-scrubber.webp",
+      alt: "Fuel gas scrubber skid with associated pipework — field installation, Rivers State",
+      caption: "Gas Scrubber & Conditioning Skid",
+      domain: "Upstream Gas Facilities",
+    },
+    {
+      src: "/images/engineering/field-gas-conditioning-skid-hoist.webp",
+      alt: "Gas conditioning skid with overhead crane — plant installation",
+      caption: "Gas Conditioning Skid Hoist Installation",
+      domain: "Midstream Gas Skids",
+    },
+    {
+      src: "/images/engineering/field-flare-knockout-drum.webp",
+      alt: "Flare knockout drum vessel with piping connections",
+      caption: "Flare Knockout Drum Overhaul",
+      domain: "Gas Processing Plants",
+    },
+    {
+      src: "/images/engineering/field-crew-gas-manifold-maintenance.webp",
+      alt: "Engineering crew performing gas manifold maintenance at a flowstation",
+      caption: "Gas Manifold Maintenance Crew",
+      domain: "Flowstation Intervention",
+    },
+    {
+      src: "/images/engineering/field-nov-multiplex-pump-servicing.webp",
+      alt: "National Oilwell Varco 3000-S multiplex pump during servicing",
+      caption: "NOV Multiplex Plunger Pump",
+      domain: "High-Pressure Injection",
+    },
+    {
+      src: "/images/engineering/field-gas-scrubber-instrumentation.webp",
+      alt: "Gas scrubber manifold with instrumentation and valves at a flow station",
+      caption: "Instrumented Scrubber Manifold",
+      domain: "Process Instrumentation",
+    },
+    {
+      src: "/images/engineering/field-associated-gas-compressor-station.webp",
+      alt: "Associated gas compressor station building and piping infrastructure",
+      caption: "Associated Gas Compressor Station",
+      domain: "Gas Compression Station",
+    },
+    {
+      src: "/images/engineering/field-compressor-skid-siemens.webp",
+      alt: "Centrifugal compressor skid with drive casing — field site",
+      caption: "Centrifugal Compressor Package",
+      domain: "Rotating Skids",
+    },
+    {
+      src: "/images/engineering/field-pump-skid-shelter-installation.webp",
+      alt: "Pump skid shelter with piping installation — equipment commissioning",
+      caption: "Pump Skid Shelter & Commissioning",
+      domain: "Industrial Turnkey Setup",
     },
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-[#06080D]">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "/" },
           { name: "Projects & Capabilities", url: "/projects" },
         ]}
       />
+
       {/* ── HEADER SECTION ── */}
-      <section className="relative py-16 sm:py-24 bg-navy-base/80 border-b border-white/10 overflow-hidden">
+      <section className="relative py-20 sm:py-28 bg-[#0B0E17] border-b border-white/[0.08] overflow-hidden">
         <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none select-none"
+          className="absolute inset-0 opacity-[0.035] pointer-events-none select-none"
           aria-hidden="true"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)",
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.7) 1px, transparent 0)",
             backgroundSize: "32px 32px",
           }}
         />
+        <div
+          className="absolute top-0 right-10 w-[500px] h-[500px] opacity-[0.07] pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background: "radial-gradient(circle, #C5A059 0%, transparent 70%)",
+          }}
+        />
+        <div className="absolute top-0 inset-x-0 gold-hairline opacity-60" aria-hidden="true" />
+
         <Container size="default">
           <Reveal direction="up">
             <div className="flex flex-col items-start gap-4 max-w-3xl">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-primary">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#C5A059] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-[#C5A059]" />
                 OPERATIONAL DOMAINS &amp; ENGINEERING SCOPES
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-industrial-white leading-tight">
-                Engineering Capabilities &amp; Industry Experience
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-industrial-white leading-[1.08]">
+                Engineering Capabilities &amp; <span className="text-gradient-gold">Field Experience</span>
               </h1>
-              <p className="text-base sm:text-lg text-industrial-platinum leading-relaxed">
+              <p className="text-base sm:text-lg text-industrial-platinum/90 leading-relaxed font-normal mt-1">
                 KOD Technical Services provides hands-on engineering servicing across upstream flowstations, downstream processing plants, marine terminals, and industrial utility installations throughout Nigeria.
               </p>
             </div>
@@ -175,132 +251,91 @@ export default function ProjectsPage() {
       </section>
 
       {/* ── TRANSPARENCY NOTICE ── */}
-      <section className="py-6 bg-navy-void border-b border-white/5">
+      <section className="py-6 bg-[#06080D] border-b border-white/[0.06]">
         <Container size="default">
           <Reveal direction="up">
-            <TechCallout variant="neutral" kicker="CLIENT CONFIDENTIALITY & CASE STUDY NOTICE">
-              To respect client non-disclosure agreements and commercial confidentiality, specific operator names, offshore platform identifiers, and contract details are shared only during formal commercial engagement. Detailed, verified project case studies and on-site photography will be published following official client authorization.
+            <TechCallout variant="neutral" kicker="CLIENT CONFIDENTIALITY &amp; CASE STUDY NOTICE">
+              To respect client non-disclosure agreements and commercial confidentiality, specific operator names, offshore platform identifiers, and contract details are shared only during formal commercial engagement. All field photography presented documents authentic KOD personnel and equipment operations.
             </TechCallout>
           </Reveal>
         </Container>
       </section>
 
       {/* ── FIELD OPERATIONS PHOTO GALLERY ── */}
-      <section className="py-14 sm:py-20 bg-navy-void border-b border-white/10" aria-labelledby="field-gallery-heading">
+      <section className="py-20 sm:py-28 bg-[#06080D] border-b border-white/[0.08]" aria-labelledby="field-gallery-heading">
         <Container size="default">
           <Reveal direction="up">
-            <div className="max-w-2xl mb-10">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-primary">
+            <div className="max-w-2xl mb-12">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#C5A059] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-[#C5A059]" />
                 AUTHENTICATED FIELD PHOTOGRAPHY
               </span>
               <h2
                 id="field-gallery-heading"
-                className="font-display text-3xl sm:text-4xl font-bold text-industrial-white mt-2"
+                className="font-display text-3xl sm:text-4xl font-bold text-industrial-white mt-2 leading-tight"
               >
-                Equipment &amp; Site Operations
+                Equipment &amp; Site Operations Record
               </h2>
-              <p className="text-sm sm:text-base text-industrial-silver mt-2">
-                The photographs below are sourced from actual KOD Technical Services field deployments across oil and gas facilities in Rivers State and the Niger Delta region. Client and facility identities are withheld in accordance with commercial confidentiality obligations.
+              <p className="text-sm sm:text-base text-industrial-silver mt-2 leading-relaxed">
+                The photographs below document actual KOD Technical Services field deployments across oil and gas facilities in Rivers State and the Niger Delta region.
               </p>
             </div>
           </Reveal>
 
-          <RevealGroup staggerMs={60} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              {
-                src: "/images/engineering/field-spdc-fuel-gas-scrubber.webp",
-                alt: "Fuel gas scrubber skid with associated pipework — field installation, Rivers State",
-                caption: "Gas Scrubber & Conditioning Skid",
-              },
-              {
-                src: "/images/engineering/field-gas-conditioning-skid-hoist.webp",
-                alt: "Gas conditioning skid with overhead crane — plant installation",
-                caption: "Gas Conditioning Skid Installation",
-              },
-              {
-                src: "/images/engineering/field-flare-knockout-drum.webp",
-                alt: "Flare knockout drum vessel with piping connections",
-                caption: "Flare Knockout Drum",
-              },
-              {
-                src: "/images/engineering/field-crew-gas-manifold-maintenance.webp",
-                alt: "Engineering crew performing gas manifold maintenance at a flowstation",
-                caption: "Gas Manifold Maintenance — Field Crew",
-              },
-              {
-                src: "/images/engineering/field-nov-multiplex-pump-servicing.webp",
-                alt: "National Oilwell Varco 3000-S multiplex pump during servicing",
-                caption: "NOV Multiplex Pump Servicing",
-              },
-              {
-                src: "/images/engineering/field-gas-scrubber-instrumentation.webp",
-                alt: "Gas scrubber manifold with instrumentation and valves at a flow station",
-                caption: "Instrumented Gas Scrubber Manifold",
-              },
-              {
-                src: "/images/engineering/field-associated-gas-compressor-station.webp",
-                alt: "Associated gas compressor station building and piping infrastructure",
-                caption: "Associated Gas Compressor Station",
-              },
-              {
-                src: "/images/engineering/field-compressor-skid-siemens.webp",
-                alt: "Centrifugal compressor skid with drive casing — field site",
-                caption: "Centrifugal Compressor Skid",
-              },
-              {
-                src: "/images/engineering/field-pump-skid-shelter-installation.webp",
-                alt: "Pump skid shelter with piping installation — equipment commissioning",
-                caption: "Pump Skid Shelter & Commissioning",
-              },
-            ].map((photo) => (
+          <RevealGroup staggerMs={60} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {fieldPhotos.map((photo) => (
               <div
                 key={photo.src}
-                className="photo-frame group relative rounded-sm overflow-hidden border border-white/10 hover:border-amber-primary/50 transition-colors bg-navy-surface"
+                className="photo-frame group relative rounded-sm overflow-hidden border border-white/[0.08] hover:border-[#C5A059]/60 transition-all duration-300 bg-[#111622] shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.8),0_0_20px_rgba(197,160,89,0.15)]"
               >
                 <div className="relative aspect-[16/10]">
                   <Image
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-void/90 via-navy-void/25 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06080D]/90 via-[#06080D]/20 to-transparent pointer-events-none" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className="font-mono text-xs text-industrial-white bg-navy-void/80 px-2.5 py-1 rounded-sm backdrop-blur-sm border border-white/10 inline-block font-medium">
+                <div className="absolute bottom-0 left-0 right-0 p-3.5 flex items-center justify-between">
+                  <span className="font-mono text-[11px] text-industrial-white bg-[#06080D]/90 px-2.5 py-1 rounded-sm backdrop-blur-sm border border-white/10 font-semibold">
                     {photo.caption}
-                  </p>
+                  </span>
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-[#F4E7BD] bg-[#C5A059]/20 backdrop-blur-sm px-2 py-0.5 rounded-sm border border-[#C5A059]/30">
+                    {photo.domain}
+                  </span>
                 </div>
               </div>
             ))}
           </RevealGroup>
 
-          <p className="mt-6 text-xs text-industrial-silver font-mono">
-            * Photographs document actual KOD Technical Services field deployments. Equipment identifiers and client facility names are not disclosed without authorization.
+          <p className="mt-8 text-xs text-industrial-silver font-mono">
+            * All photographs document actual KOD Technical Services field deployments. Proprietary client tags and facility names are withheld under commercial confidentiality agreements.
           </p>
         </Container>
       </section>
 
       {/* ── SECTION 1: OPERATIONAL ENVIRONMENTS & MACHINERY TYPES ── */}
       <section
-        className="py-16 sm:py-24 bg-navy-void border-b border-white/10"
+        className="py-20 sm:py-28 bg-[#0B0E17] border-b border-white/[0.08]"
         aria-labelledby="domains-heading"
       >
         <Container size="default">
           <Reveal direction="up">
-            <div className="max-w-2xl mb-12">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-primary">
-                INDUSTRIAL ENVIRONMENTS
+            <div className="max-w-2xl mb-14">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#C5A059] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-[#C5A059]" />
+                OPERATING DOMAINS
               </span>
               <h2
                 id="domains-heading"
-                className="font-display text-3xl sm:text-4xl font-bold text-industrial-white mt-2"
+                className="font-display text-3xl sm:text-4xl font-bold text-industrial-white mt-2 leading-tight"
               >
-                Operating Sectors &amp; Relevant Machinery
+                Industrial Sectors &amp; Relevant Machinery
               </h2>
-              <p className="text-sm sm:text-base text-industrial-silver mt-2">
-                Representative operating sectors where KOD Technical Services deploys its rotating equipment maintenance, precision alignment, and machine shop capabilities.
+              <p className="text-sm sm:text-base text-industrial-silver mt-2 leading-relaxed">
+                Representative operating sectors where KOD Technical Services deploys rotating machinery maintenance, precision alignment, and machine shop capabilities.
               </p>
             </div>
           </Reveal>
@@ -309,12 +344,12 @@ export default function ProjectsPage() {
             {operationalDomains.map((domain) => (
               <div
                 key={domain.id}
-                className="p-7 rounded-sm bg-navy-surface border border-white/8 flex flex-col justify-between card-amber-top h-full card-hover"
+                className="p-8 rounded-sm bg-[#111622] border border-white/[0.08] flex flex-col justify-between card-gold-top h-full card-hover-gold"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-mono text-xs font-bold text-amber-primary">
-                      [// {domain.id}]
+                  <div className="flex items-center justify-between gap-2 mb-3.5">
+                    <span className="font-mono text-xs font-bold text-[#C5A059]">
+                      {"// "}{domain.id}
                     </span>
                     <Badge variant="cyan">{domain.environment}</Badge>
                   </div>
@@ -323,18 +358,18 @@ export default function ProjectsPage() {
                     {domain.title}
                   </h3>
 
-                  <p className="text-sm text-industrial-platinum mt-3 leading-relaxed">
+                  <p className="text-sm text-industrial-platinum/85 mt-3 leading-relaxed">
                     {domain.description}
                   </p>
 
-                  <div className="mt-5 pt-4 border-t border-white/5 flex flex-col gap-2">
-                    <span className="font-mono text-[11px] font-bold uppercase text-industrial-silver">
+                  <div className="mt-5 pt-4 border-t border-white/[0.06] flex flex-col gap-2">
+                    <span className="font-mono text-[11px] font-bold uppercase text-industrial-silver tracking-wider">
                       Relevant Equipment Types:
                     </span>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs font-mono text-industrial-platinum">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-industrial-platinum/90">
                       {domain.machineryTypes.map((item, idx) => (
                         <li key={idx} className="flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-amber-primary shrink-0" aria-hidden="true" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#C5A059] shrink-0" aria-hidden="true" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -342,14 +377,14 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap items-center gap-1.5">
+                <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap items-center gap-1.5">
                   <span className="font-mono text-[10px] uppercase text-industrial-silver mr-1">
                     Applicable Disciplines:
                   </span>
                   {domain.relevantServices.map((srv, idx) => (
                     <span
                       key={idx}
-                      className="font-mono text-[11px] px-2 py-0.5 rounded-sm bg-navy-base border border-white/5 text-amber-primary"
+                      className="font-mono text-[11px] px-2 py-0.5 rounded-sm bg-[#06080D] border border-white/[0.06] text-[#F4E7BD]"
                     >
                       {srv}
                     </span>
@@ -361,25 +396,26 @@ export default function ProjectsPage() {
         </Container>
       </section>
 
-      {/* ── SECTION 2: COMMON MECHANICAL CHALLENGES & RESOLUTION ── */}
+      {/* ── SECTION 2: CONTRAST BREAKOUT — ARCHITECTURAL WARM IVORY ── */}
       <section
-        className="py-16 sm:py-24 bg-navy-base border-b border-white/10"
+        className="py-20 sm:py-28 bg-[#F7F5EE] text-[#0E121A] relative"
         aria-labelledby="challenges-heading"
       >
         <Container size="default">
           <Reveal direction="up">
-            <div className="max-w-2xl mb-12">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-primary">
-                ENGINEERING PROBLEM RESOLUTION
+            <div className="max-w-2xl mb-14">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#8C733E] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-[#8C733E]" />
+                ROOT-CAUSE PROBLEM RESOLUTION
               </span>
               <h2
                 id="challenges-heading"
-                className="font-display text-3xl sm:text-4xl font-bold text-industrial-white mt-2"
+                className="font-display text-3xl sm:text-4xl font-bold text-[#0E121A] mt-2 leading-tight"
               >
-                Mechanical Challenges We Address
+                Mechanical Failure Modes We Rectify
               </h2>
-              <p className="text-sm sm:text-base text-industrial-silver mt-2">
-                Our technicians and machine shop personnel focus on identifying and correcting the root mechanical causes behind equipment failure.
+              <p className="text-sm sm:text-base text-[#4A5260] mt-2 leading-relaxed">
+                Our technicians and machine shop personnel focus on identifying and correcting the underlying mechanical causes behind equipment failure.
               </p>
             </div>
           </Reveal>
@@ -388,21 +424,25 @@ export default function ProjectsPage() {
             {engineeringChallenges.map((item, idx) => (
               <div
                 key={idx}
-                className="p-6 sm:p-7 rounded-sm bg-navy-surface border border-white/8 flex flex-col gap-4 card-hover card-amber-top h-full"
+                className="p-7 sm:p-8 rounded-sm bg-white border border-[#12151B]/10 shadow-[0_4px_16px_rgba(0,0,0,0.04)] flex flex-col gap-4 h-full"
               >
-                <div className="flex items-center gap-2 text-amber-primary font-mono text-xs font-bold uppercase">
-                  <span className="w-2 h-2 rounded-full bg-amber-primary" aria-hidden="true" />
-                  <span>CHALLENGE 0{idx + 1}</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    {item.icon}
+                    <h3 className="font-display text-lg font-bold text-[#0E121A]">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <span className="font-mono text-xs font-bold text-[#8C733E]">
+                    0{idx + 1}
+                  </span>
                 </div>
-                <h3 className="font-display text-lg font-bold text-industrial-white">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-industrial-platinum leading-relaxed">
+                <p className="text-sm text-[#4A5260] leading-relaxed">
                   {item.challenge}
                 </p>
-                <div className="p-3.5 rounded-sm bg-navy-base border border-white/5 text-xs text-industrial-platinum leading-relaxed mt-auto">
-                  <strong className="text-amber-primary font-mono uppercase block mb-1">
-                    Technical Resolution:
+                <div className="p-4 rounded-sm bg-[#F7F5EE] border border-[#12151B]/08 text-xs text-[#0E121A] leading-relaxed mt-auto font-mono">
+                  <strong className="text-[#8C733E] uppercase block mb-1">
+                    Technical Resolution Protocol:
                   </strong>
                   {item.resolution}
                 </div>
@@ -412,35 +452,38 @@ export default function ProjectsPage() {
         </Container>
       </section>
 
-      {/* ── SECTION 3: INQUIRY & UPCOMING WORK SCOPES ── */}
-      <section className="py-16 sm:py-20 bg-navy-void" aria-labelledby="discuss-project-heading">
+      {/* ── SECTION 3: INQUIRY & TURNAROUND COLLABORATION ── */}
+      <section className="py-20 sm:py-28 bg-[#06080D]" aria-labelledby="discuss-project-heading">
         <Container size="default">
           <Reveal direction="up">
-            <div className="relative p-8 sm:p-12 rounded-sm bg-navy-base border border-white/10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-industrial-lg">
+            <div className="relative p-8 sm:p-14 rounded-sm bg-gradient-to-r from-[#0B0E17] via-[#111622] to-[#0B0E17] border border-[#C5A059]/40 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(197,160,89,0.18)]">
               <span className="hud-bracket-tl" aria-hidden="true" />
               <span className="hud-bracket-tr" aria-hidden="true" />
               <span className="hud-bracket-bl" aria-hidden="true" />
               <span className="hud-bracket-br" aria-hidden="true" />
 
-              <div className="flex flex-col gap-3 max-w-2xl">
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-primary">
+              <div className="flex flex-col gap-3.5 max-w-2xl">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#C5A059] flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#C5A059]" />
                   TURNAROUND &amp; MAINTENANCE COLLABORATION
                 </span>
                 <h2
                   id="discuss-project-heading"
-                  className="font-display text-2xl sm:text-3xl font-extrabold text-industrial-white leading-tight"
+                  className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-industrial-white leading-tight"
                 >
-                  Discuss an Upcoming Maintenance Window or Equipment Challenge
+                  Discuss an Upcoming Maintenance Window or Breakdown
                 </h2>
-                <p className="text-sm sm:text-base text-industrial-platinum leading-relaxed">
-                  Whether planning a planned facility turnaround, requiring machine shop casing re-machining, or responding to high machinery vibration, our Port Harcourt team can review your specifications and schedule.
+                <p className="text-sm sm:text-base text-industrial-platinum/90 leading-relaxed">
+                  Whether planning a major facility turnaround overhaul, requiring casing line-boring, or responding to high machinery vibration, our Port Harcourt engineering team is ready to assist.
                 </p>
                 <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-industrial-silver pt-2">
-                  <span>Facility: {COMPANY_INFO.headquarters}</span>
+                  <span>Facility: <strong className="text-white">{COMPANY_INFO.headquarters}</strong></span>
+                  <span>&bull;</span>
+                  <span>Phone: <strong className="text-white">{COMPANY_INFO.primaryPhone}</strong></span>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full lg:w-auto shrink-0">
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 w-full lg:w-auto shrink-0">
                 <Link href="/contact" className="w-full sm:w-auto">
                   <Button variant="primary" size="lg" className="w-full justify-center">
                     Contact Engineering Desk
@@ -448,7 +491,7 @@ export default function ProjectsPage() {
                 </Link>
                 <a
                   href={`tel:${COMPANY_INFO.primaryPhoneRaw}`}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-navy-surface border border-white/15 text-industrial-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-navy-elevated transition-colors text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-sm bg-[#06080D] border border-white/15 text-industrial-white font-mono text-xs font-bold uppercase tracking-wider hover:border-[#C5A059] hover:text-[#F4E7BD] transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059]"
                 >
                   <Phone className="w-4 h-4 text-telemetry-green" aria-hidden="true" />
                   <span>Call Hotline</span>

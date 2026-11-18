@@ -265,7 +265,7 @@ export function ContactEnquiryForm() {
   const fallbackMailto = `mailto:${COMPANY_INFO.primaryEmail}?subject=${fallbackSubject}&body=${fallbackBody}`;
 
   return (
-    <div className="p-6 sm:p-8 rounded-sm bg-navy-surface border border-white/10 shadow-industrial-lg relative">
+    <div className="p-7 sm:p-10 rounded-sm bg-[#111622] border border-[#C5A059]/35 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_30px_rgba(197,160,89,0.12)] relative">
       {/* Precision corner brackets */}
       <span className="hud-bracket-tl" aria-hidden="true" />
       <span className="hud-bracket-tr" aria-hidden="true" />
@@ -275,17 +275,18 @@ export function ContactEnquiryForm() {
       {/* Form Header */}
       <div className="flex flex-col gap-2 mb-6">
         <div className="flex items-center justify-between">
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-primary">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#C5A059] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[#C5A059]" />
             ENGINEERING SPECIFICATION DESK
           </span>
           <span className="font-mono text-[10px] text-industrial-silver uppercase tracking-wider">
-            PORT HARCOURT • RFQ PORTAL
+            PORT HARCOURT &bull; RFQ PORTAL
           </span>
         </div>
         <h3 className="font-display text-2xl font-bold text-industrial-white">
           Request for Quotation (RFQ)
         </h3>
-        <p className="text-xs sm:text-sm text-industrial-silver leading-relaxed">
+        <p className="text-xs sm:text-sm text-industrial-platinum/80 leading-relaxed">
           Provide your equipment parameters and operational scope below. All requests are routed directly to our rotating machinery engineering team for technical assessment.
         </p>
       </div>

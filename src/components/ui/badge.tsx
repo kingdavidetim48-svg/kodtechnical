@@ -2,20 +2,23 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: "amber" | "cyan" | "green" | "neutral";
+  variant?: "amber" | "cyan" | "green" | "neutral" | "gold" | "ivory" | "dark";
 }
 
 export function Badge({
   className,
-  variant = "amber",
+  variant = "gold",
   children,
   ...props
 }: BadgeProps) {
   const variantStyles = {
-    amber: "border-amber-primary/30 bg-amber-primary/10 text-amber-primary",
+    gold: "border-[#C5A059]/40 bg-[#C5A059]/10 text-[#C5A059]",
+    amber: "border-[#C5A059]/40 bg-[#C5A059]/10 text-[#C5A059]",
     cyan: "border-telemetry-cyan/30 bg-telemetry-cyan/10 text-telemetry-cyan",
     green: "border-telemetry-green/30 bg-telemetry-green/10 text-telemetry-green",
     neutral: "border-white/10 bg-white/5 text-industrial-silver",
+    ivory: "border-[#12151B]/15 bg-[#EFECE2] text-[#0E121A]",
+    dark: "border-white/15 bg-[#06080D] text-[#CBD5E1]",
   };
 
   return (

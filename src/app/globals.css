@@ -8,25 +8,50 @@
    ============================================================ */
 
 :root {
-  /* --- Color Palette: Primary Architectural Canvas --- */
-  --color-navy-void: #050814;
-  --color-navy-base: #0a1128;
-  --color-navy-surface: #101c3d;
-  --color-navy-elevated: #172554;
+  /* --- Color Palette: Deep Charcoal / Near-Black Architectural Canvas --- */
+  --color-charcoal-void: #06080d;
+  --color-charcoal-base: #0b0e17;
+  --color-charcoal-surface: #111622;
+  --color-charcoal-elevated: #171e2d;
+  --color-navy-void: #06080d;
+  --color-navy-base: #0b0e17;
+  --color-navy-surface: #111622;
+  --color-navy-elevated: #171e2d;
   --color-border-subtle: rgba(255, 255, 255, 0.08);
-  --color-border-active: rgba(245, 158, 11, 0.4);
+  --color-border-hairline: rgba(255, 255, 255, 0.12);
+  --color-border-active: rgba(197, 160, 89, 0.45);
+
+  /* --- Color Palette: Golden Precision Industrial Luxury Accents --- */
+  --color-gold-champagne: #f4e7bd;
+  --color-gold-primary: #c5a059;
+  --color-gold-bright: #d4af37;
+  --color-gold-hover: #b28d46;
+  --color-gold-muted: #8c733e;
+  --color-gold-dark: #5a4822;
+  --color-gold-subtle: rgba(197, 160, 89, 0.12);
+  --color-gold-border: rgba(197, 160, 89, 0.35);
+
+  /* Amber alias mapped to Golden Precision for backward compatibility */
+  --color-amber-primary: #c5a059;
+  --color-amber-hover: #b28d46;
+  --color-amber-subtle: rgba(197, 160, 89, 0.12);
+
+  /* --- Color Palette: Warm Ivory & Neutral Light Contrast --- */
+  --color-ivory-light: #fdfcf7;
+  --color-ivory-base: #f7f5ee;
+  --color-ivory-surface: #efece2;
+  --color-ivory-border: rgba(18, 21, 27, 0.09);
+  --color-text-dark: #0e121a;
+  --color-text-dark-muted: #4a5260;
 
   /* --- Color Palette: Neutral & Typography --- */
   --color-text-primary: #f8fafc;
   --color-text-secondary: #cbd5e1;
-  --color-text-muted: #94a3b8;
-  --color-neutral-light: #f1f5f9;
-  --color-text-inverse: #0f172a;
+  --color-text-muted: #8e95a5;
+  --color-neutral-light: #f7f5ee;
+  --color-text-inverse: #0e121a;
 
-  /* --- Color Palette: Industrial Accents --- */
-  --color-amber-primary: #f59e0b;
-  --color-amber-hover: #d97706;
-  --color-amber-subtle: rgba(245, 158, 11, 0.12);
+  /* --- Telemetry Accents --- */
   --color-cyan-telemetry: #06b6d4;
   --color-success-green: #10b981;
   --color-error-red: #ef4444;
@@ -63,18 +88,22 @@
     0 0 0 1px rgba(255, 255, 255, 0.06);
   --shadow-industrial-lg: 0 16px 36px rgba(0, 0, 0, 0.75),
     0 0 0 1px rgba(255, 255, 255, 0.08);
-  --shadow-amber-glow: 0 0 20px rgba(245, 158, 11, 0.25);
+  --shadow-amber-glow: 0 0 20px rgba(197, 160, 89, 0.25);
+  --shadow-gold-glow: 0 0 24px rgba(197, 160, 89, 0.22);
+  --shadow-gold-glow-lg: 0 0 40px rgba(197, 160, 89, 0.30);
+  --shadow-ivory-elevated: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(18, 21, 27, 0.06);
 
   /* --- Motion Tokens --- */
   --ease-industrial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-editorial: cubic-bezier(0.25, 1, 0.5, 1);
   --duration-fast: 150ms;
   --duration-standard: 280ms;
   --duration-deliberate: 450ms;
   --duration-cinematic: 700ms;
 
   /* --- Header Heights --- */
-  --header-height-mobile: 64px;
-  --header-height-desktop: 76px;
+  --header-height-mobile: 68px;
+  --header-height-desktop: 80px;
 }
 
 /* ============================================================
@@ -248,7 +277,31 @@
 
   /* Text gradient: amber fade for display headings */
   .text-gradient-amber {
-    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+    background: linear-gradient(135deg, #f4e7bd 0%, #c5a059 50%, #8c733e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Golden Precision Luxury Text Gradient */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #f4e7bd 0%, #d4af37 35%, #c5a059 70%, #9c7c38 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Champagne text gradient for subtle secondary highlights */
+  .text-gradient-champagne {
+    background: linear-gradient(135deg, #ffffff 0%, #f4e7bd 50%, #c5a059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Architectural Ivory Text Gradient */
+  .text-gradient-ivory {
+    background: linear-gradient(135deg, #0e121a 0%, #2b3240 60%, #4a5260 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -260,6 +313,20 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Precision Metallic Gold Datum Line / Hairline Divider */
+  .gold-hairline {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(197, 160, 89, 0) 0%, rgba(197, 160, 89, 0.45) 30%, rgba(244, 231, 189, 0.75) 50%, rgba(197, 160, 89, 0.45) 70%, rgba(197, 160, 89, 0) 100%);
+  }
+
+  /* Edge-anchored gold datum line */
+  .gold-datum-left {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(244, 231, 189, 0.8) 0%, rgba(197, 160, 89, 0.5) 40%, rgba(197, 160, 89, 0) 100%);
   }
 
   /* Industrial card hover lift */
@@ -274,26 +341,59 @@
     box-shadow: var(--shadow-industrial-md);
   }
 
-  /* Top amber accent border on card hover */
-  .card-amber-top {
+  /* Luxury Gold card hover lift */
+  .card-hover-gold {
+    transition: transform var(--duration-standard) var(--ease-industrial),
+      border-color var(--duration-standard) var(--ease-industrial),
+      box-shadow var(--duration-standard) var(--ease-industrial);
+  }
+
+  .card-hover-gold:hover {
+    transform: translateY(-4px);
+    border-color: rgba(197, 160, 89, 0.45);
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 160, 89, 0.18);
+  }
+
+  /* Top amber/gold accent border on card hover */
+  .card-amber-top,
+  .card-gold-top {
     position: relative;
   }
 
-  .card-amber-top::before {
+  .card-amber-top::before,
+  .card-gold-top::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--color-amber-primary);
+    background: linear-gradient(90deg, #c5a059 0%, #f4e7bd 50%, #9c7c38 100%);
     border-radius: var(--radius-md) var(--radius-md) 0 0;
     opacity: 0;
     transition: opacity var(--duration-standard) var(--ease-industrial);
   }
 
-  .card-amber-top:hover::before {
+  .card-amber-top:hover::before,
+  .card-gold-top:hover::before {
     opacity: 1;
+  }
+
+  /* Permanent subtle gold top accent for flagship cards */
+  .card-gold-top-active {
+    position: relative;
+  }
+
+  .card-gold-top-active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #c5a059 0%, #f4e7bd 50%, #9c7c38 100%);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    opacity: 0.85;
   }
 
   /* Pulsating availability indicator */

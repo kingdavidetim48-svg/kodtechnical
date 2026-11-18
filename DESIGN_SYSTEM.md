@@ -316,4 +316,148 @@ The visual identity must command the trust of refinery operators, offshore asset
 | **Projects** | Filterable masonry grid with technical parameter badges | 2-column grid | 1-column list with quick category pills |
 | **About Us** | Asymmetric editorial layout with facility timeline & C.O.R.E values | 2-column layout | 1-column narrative with icon highlight blocks |
 | **Contact** | 2-column: 45% verified direct info + facility details / 55% inquiry builder | Stacked: Info top, form below | Stacked: Instant tap-to-call buttons top, quick inquiry form below |
- -->
+---
+
+## 8. Chapter 15 — Golden Precision Design System Overhaul
+
+**Effective Date**: 2026-11-19  
+**Status**: IMPLEMENTED & VERIFIED
+
+This chapter supersedes the original Chapter 2 colour palette. All existing token *names* are preserved for backward compatibility; their *values* have been updated to the new Golden Precision palette.
+
+---
+
+### 8.1 Revised Colour Palette — Golden Precision
+
+#### Primary Canvas (Charcoal Void)
+
+| Token Name | Old Value (Chapter 2) | New Value (Chapter 15) | Semantic Role |
+| :--- | :--- | :--- | :--- |
+| `--color-navy-void` / `navy-void` | `#050814` | `#06080D` | Ultra-deep page canvas, hero backgrounds |
+| `--color-navy-base` / `navy-base` | `#0A1128` | `#0B0E17` | Primary section background, input fills |
+| `--color-navy-surface` / `navy-surface` | `#101C3D` | `#111622` | Card/panel backgrounds, elevated surfaces |
+| `--color-navy-elevated` / `navy-elevated` | `#172554` | `#171E2D` | Hover card states, modal shells, dropdowns |
+
+> [!NOTE] The `navy.*` token names are retained as-is across all Tailwind config, CSS variables, and components to avoid a mass find-replace. Their values now resolve to warm charcoal colours rather than blue-navy values.
+
+#### Champagne Gold Accent
+
+| Token Name | Hex | Semantic Role |
+| :--- | :--- | :--- |
+| `--color-amber-primary` / `amber-primary` | `#C5A059` | Primary CTAs, focus rings, gold accents (replaces `#F59E0B`) |
+| `--color-amber-hover` / `amber-hover` | `#B28D46` | Button hover states, active indicators |
+| `gold-100` | `#F4E7BD` | Lightest gold tint — reference IDs, label highlights |
+| `gold-200` | `#E8CF8A` | Light gold — decorative text gradients |
+| `gold-300` | `#D4AF37` | Mid-weight gold — gradient midpoints |
+| `gold-400` | `#C5A059` | Primary champagne gold (= `amber-primary`) |
+| `gold-500` | `#B28D46` | Deeper gold — hover states (= `amber-hover`) |
+| `gold-600` | `#8F6D2F` | Dark gold — pressed states |
+| `gold-700` | `#6B5024` | Deepest gold tint |
+| `gold-muted` | `rgba(197,160,89,0.35)` | Muted gold for borders, hairlines |
+| `gold-glow` | `0 0 20px rgba(197,160,89,0.25)` | Box shadow — primary gold glow |
+| `gold-glow-lg` | `0 0 40px rgba(197,160,89,0.35)` | Box shadow — featured element gold glow |
+
+#### Warm Ivory Contrast
+
+| Token Name | Hex | Semantic Role |
+| :--- | :--- | :--- |
+| `ivory-50` | `#FDFCF8` | Near-white ivory — lightest breakout |
+| `ivory-100` | `#F7F5EE` | **Primary ivory section background** (editorial breakouts) |
+| `ivory-200` | `#EDE9DC` | Ivory card fills, elevated surfaces |
+| `ivory-300` | `#DED8C5` | Ivory borders |
+| `ivory-400` | `#C8BFA4` | Muted ivory text on ivory backgrounds |
+
+---
+
+### 8.2 New CSS Utility Classes
+
+Defined in `src/app/globals.css` → `@layer utilities`:
+
+| Class | Description | Usage |
+| :--- | :--- | :--- |
+| `gold-hairline` | 1px gradient metallic gold line (`#C5A059 → #D4AF37 → #B28D46`) | Header top, footer top, major section boundaries |
+| `gold-datum-left` | 2px left border with champagne gold gradient | Callout blocks, sidebar highlights |
+| `card-gold-top` | Gradient gold top-border on hover (via `::before` pseudo-element) | Service cards, domain cards |
+| `card-hover-gold` | Gold border colour + gold box-shadow on hover | All dark-theme feature cards |
+| `card-gold-top-active` | Persistent (non-hover) gold top border | Featured/highlighted cards |
+| `text-gradient-gold` | Gold gradient text (`#C5A059 → #D4AF37 → #F4E7BD`) | Section headings, hero headlines |
+| `text-gradient-champagne` | Champagne gradient text (`#F4E7BD → #C5A059`) | Metric values, callout numbers |
+| `text-gradient-amber` | Alias of `text-gradient-gold` | Legacy compat — same gold tint |
+
+---
+
+### 8.3 Updated Component Variants
+
+#### Button (`src/components/ui/button.tsx`)
+
+| Variant | Background | Text | Border | Usage |
+| :--- | :--- | :--- | :--- | :--- |
+| `primary` | `linear-gradient(#C5A059, #D4AF37, #B28D46)` | `#06080D` | None | Primary CTA — RFQ submit, hero CTA |
+| `gold` | `linear-gradient(#C5A059, #B28D46)` | `#06080D` | None | Secondary gold CTA |
+| `dark` | `#111622` | `#F8FAFC` | `rgba(255,255,255,0.12)` | Dark-on-dark contexts |
+| `outline` | Transparent | `#C5A059` | `#C5A059/40` | Ghost outline with gold ring |
+| `ghost` | Transparent on hover | `#F8FAFC` | None | Minimal tertiary action |
+
+#### Badge (`src/components/ui/badge.tsx`)
+
+| Variant | Background | Text | Usage |
+| :--- | :--- | :--- | :--- |
+| `gold` | `rgba(197,160,89,0.15)` | `#C5A059` | **Default variant** — service categories, tags |
+| `ivory` | `rgba(237,233,220,0.60)` | `#2D2412` | Badges on ivory/light sections |
+| `dark` | `rgba(255,255,255,0.08)` | `#CBD5E1` | Neutral metadata badges on dark |
+| `cyan` | `rgba(6,182,212,0.15)` | `#06B6D4` | Telemetry / condition tags |
+
+---
+
+### 8.4 Section Alternation Pattern
+
+The canonical section rhythm across all major pages:
+
+```
+Charcoal (bg-[#06080D] / bg-[#0B0E17])
+  ↓
+Warm Ivory (bg-[#F7F5EE]) — editorial breakout
+  ↓
+Charcoal (bg-[#06080D] / bg-[#111622])
+```
+
+**Pages using this pattern**: Homepage, About, Projects.  
+Services and Contact use all-charcoal with internal contrast via card surfaces.
+
+---
+
+### 8.5 HUD Precision Frame Elements
+
+Corner bracket system retained and upgraded with gold-glow on featured surfaces:
+
+```css
+.hud-bracket-tl, .hud-bracket-tr,
+.hud-bracket-bl, .hud-bracket-br {
+  /* 10×10px L-shaped gold corner brackets */
+  /* Color: rgba(197,160,89,0.60) */
+}
+```
+
+Applied to: Hero CTA band, featured service cards, RFQ form container, highlighted metric blocks.
+
+---
+
+### 8.6 Shadow Tokens
+
+| Token | Value | Usage |
+| :--- | :--- | :--- |
+| `shadow-gold-glow` | `0 0 20px rgba(197,160,89,0.25)` | Standard gold ambient |
+| `shadow-gold-glow-lg` | `0 0 40px rgba(197,160,89,0.35)` | Featured card emphasis |
+| `shadow-ivory-elevated` | `0 8px 32px rgba(0,0,0,0.12)` | Cards on ivory sections |
+
+---
+
+### 8.7 Typography — Unchanged
+
+Font families, scale, and weights remain identical to Chapter 2:
+
+| Role | Family | Weight |
+| :--- | :--- | :--- |
+| Display / Editorial | Syne | 700, 800 |
+| Body / UI | Inter | 400, 500, 600 |
+| Mono / Technical | JetBrains Mono | 400, 700 |

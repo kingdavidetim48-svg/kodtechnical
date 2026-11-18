@@ -11,15 +11,41 @@ const config: Config = {
     extend: {
       colors: {
         navy: {
-          void: "#050814",
-          base: "#0A1128",
-          surface: "#101C3D",
-          elevated: "#172554",
+          void: "#06080D",
+          base: "#0B0E17",
+          surface: "#111622",
+          elevated: "#171E2D",
+        },
+        charcoal: {
+          void: "#06080D",
+          base: "#0B0E17",
+          surface: "#111622",
+          elevated: "#171E2D",
+          border: "rgba(255, 255, 255, 0.08)",
+        },
+        ivory: {
+          light: "#FDFCF7",
+          base: "#F7F5EE",
+          surface: "#EFECE2",
+          border: "rgba(18, 21, 27, 0.09)",
+          dark: "#0E121A",
+          muted: "#4A5260",
+        },
+        gold: {
+          champagne: "#F4E7BD",
+          primary: "#C5A059",
+          bright: "#D4AF37",
+          hover: "#B28D46",
+          muted: "#8C733E",
+          dark: "#5A4822",
+          subtle: "rgba(197, 160, 89, 0.12)",
+          glow: "rgba(197, 160, 89, 0.25)",
         },
         amber: {
-          primary: "#F59E0B",
-          hover: "#D97706",
-          subtle: "rgba(245, 158, 11, 0.12)",
+          primary: "#C5A059", // Upgraded to Golden Precision tone for system harmony
+          hover: "#B28D46",
+          subtle: "rgba(197, 160, 89, 0.12)",
+          raw: "#F59E0B",
         },
         telemetry: {
           cyan: "#06B6D4",
@@ -34,7 +60,8 @@ const config: Config = {
         },
         border: {
           subtle: "rgba(255, 255, 255, 0.08)",
-          active: "rgba(245, 158, 11, 0.40)",
+          active: "rgba(197, 160, 89, 0.50)",
+          gold: "rgba(197, 160, 89, 0.35)",
         },
       },
       fontFamily: {
@@ -96,7 +123,10 @@ const config: Config = {
           "0 6px 18px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06)",
         "industrial-lg":
           "0 16px 36px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08)",
-        "amber-glow": "0 0 20px rgba(245, 158, 11, 0.25)",
+        "amber-glow": "0 0 20px rgba(197, 160, 89, 0.25)",
+        "gold-glow": "0 0 24px rgba(197, 160, 89, 0.22)",
+        "gold-glow-lg": "0 0 40px rgba(197, 160, 89, 0.30)",
+        "ivory-elevated": "0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(18, 21, 27, 0.06)",
       },
       maxWidth: {
         "7xl": "1280px",

@@ -31,32 +31,61 @@ export function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-navy-void/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-[#06080D]/95 backdrop-blur-xl">
+      {/* Precision Top Datum Line */}
+      <div className="gold-hairline opacity-70" aria-hidden="true" />
+
+      {/* Top Engineering Micro-Utility Bar */}
+      <div className="hidden lg:block border-b border-white/[0.05] bg-[#0B0E17]/60 py-1.5 text-[11px] font-mono">
+        <Container size="default">
+          <div className="flex items-center justify-between text-industrial-silver">
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1.5 text-telemetry-green font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-telemetry-green animate-pulse" />
+                PORT HARCOURT WORKSHOP &amp; FIELD OPERATIONS ACTIVE
+              </span>
+              <span className="text-white/20">•</span>
+              <span className="text-industrial-silver/80">API 610 &bull; ISO 10816 PRECISION ALIGNMENT</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-industrial-silver/90">HOURS: MON–FRI 08:00–17:00 (24/7 CALLOUT)</span>
+              <span className="text-white/20">•</span>
+              <a
+                href={`tel:${COMPANY_INFO.primaryPhoneRaw}`}
+                className="text-[#C5A059] hover:text-[#F4E7BD] font-bold transition-colors"
+              >
+                HOTLINE: {COMPANY_INFO.primaryPhone}
+              </a>
+            </div>
+          </div>
+        </Container>
+      </div>
+
       <Container size="default">
         <div className="flex h-18 sm:h-20 items-center justify-between gap-4">
           {/* Brand Logo & Lockup */}
           <Link
             href="/"
-            className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary rounded-sm p-1 -m-1"
+            className="flex items-center gap-3.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059] rounded-sm p-1 -m-1"
             aria-label="KOD Technical Services Home"
           >
             {/* Official KOD Globe Logo */}
-            <div className="w-10 h-10 relative flex-shrink-0 transition-transform group-hover:scale-105">
+            <div className="w-10 h-10 relative flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/images/brand/kod-logo-icon.png"
                 alt="KOD Technical Services logo"
                 width={40}
                 height={40}
-                className="w-10 h-10 object-contain"
+                className="w-10 h-10 object-contain drop-shadow-[0_2px_8px_rgba(197,160,89,0.25)]"
                 priority
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-industrial-white leading-none">
-                KOD <span className="text-amber-primary">TECHNICAL</span>
+              <span className="font-display text-lg sm:text-xl font-extrabold tracking-tight text-industrial-white leading-none">
+                KOD <span className="text-gradient-gold">TECHNICAL</span>
               </span>
-              <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-widest text-industrial-silver uppercase mt-1">
-                Port Harcourt • Rivers State
+              <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-[0.16em] text-industrial-silver uppercase mt-1">
+                Rotating Equipment &bull; Port Harcourt
               </span>
             </div>
           </Link>
@@ -73,10 +102,10 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative px-3.5 py-2 text-sm font-medium rounded-sm transition-all duration-200 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary",
+                    "relative px-4 py-2 text-sm font-medium tracking-wide rounded-sm transition-all duration-200 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059]",
                     isActive
-                      ? "text-amber-primary bg-amber-primary/10 font-semibold shadow-[inset_0_-2px_0_0_#F59E0B]"
-                      : "text-industrial-platinum hover:text-industrial-white hover:bg-white/5"
+                      ? "text-[#F4E7BD] bg-[#C5A059]/10 font-semibold shadow-[inset_0_-2px_0_0_#C5A059]"
+                      : "text-industrial-platinum hover:text-[#F4E7BD] hover:bg-white/[0.04]"
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -90,11 +119,11 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${COMPANY_INFO.primaryPhoneRaw}`}
-              className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-telemetry-green/30 bg-telemetry-green/10 text-telemetry-green font-mono text-xs font-semibold hover:bg-telemetry-green/20 hover:border-telemetry-green/50 transition-all duration-200 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary"
+              className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-sm border border-[#C5A059]/30 bg-[#C5A059]/10 text-[#F4E7BD] font-mono text-xs font-semibold hover:bg-[#C5A059]/20 hover:border-[#C5A059]/60 transition-all duration-200 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059]"
               title="Direct Engineering Hotline"
             >
               <span className="w-2 h-2 rounded-full bg-telemetry-green animate-pulse" aria-hidden="true" />
-              <Phone className="w-3.5 h-3.5 transition-transform group-hover:scale-110" aria-hidden="true" />
+              <Phone className="w-3.5 h-3.5 text-[#C5A059] transition-transform group-hover:scale-110" aria-hidden="true" />
               <span>{COMPANY_INFO.primaryPhone}</span>
             </a>
 
@@ -109,19 +138,19 @@ export function Header() {
           <div className="flex items-center gap-2 md:hidden">
             <a
               href={`tel:${COMPANY_INFO.primaryPhoneRaw}`}
-              className="p-2.5 rounded-sm border border-telemetry-green/40 bg-telemetry-green/10 text-telemetry-green hover:bg-telemetry-green/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary"
+              className="p-2.5 rounded-sm border border-[#C5A059]/40 bg-[#C5A059]/10 text-[#C5A059] hover:bg-[#C5A059]/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059]"
               aria-label={`Call emergency hotline: ${COMPANY_INFO.primaryPhone}`}
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-sm text-industrial-platinum hover:text-industrial-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary"
+              className="p-2.5 rounded-sm text-industrial-platinum hover:text-industrial-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059]"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 text-[#C5A059]" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -130,7 +159,7 @@ export function Header() {
         {mobileMenuOpen && (
           <div
             id="mobile-navigation"
-            className="md:hidden py-4 border-t border-white/10 flex flex-col gap-2 animate-slide-down bg-navy-void/98 backdrop-blur-xl"
+            className="md:hidden py-4 border-t border-white/10 flex flex-col gap-2 animate-slide-down bg-[#06080D]/98 backdrop-blur-2xl"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation"
@@ -146,9 +175,9 @@ export function Header() {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "px-4 py-3 text-base font-medium rounded-sm transition-all duration-150 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary",
+                    "px-4 py-3 text-base font-medium rounded-sm transition-all duration-150 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059]",
                     isActive
-                      ? "text-amber-primary bg-amber-primary/10 font-semibold border-l-2 border-amber-primary pl-3.5"
+                      ? "text-[#F4E7BD] bg-[#C5A059]/15 font-semibold border-l-2 border-[#C5A059] pl-3.5"
                       : "text-industrial-platinum hover:text-industrial-white hover:bg-white/5"
                   )}
                   aria-current={isActive ? "page" : undefined}
@@ -157,7 +186,7 @@ export function Header() {
                 </Link>
               );
             })}
-            <div className="pt-3 px-2 flex flex-col gap-2">
+            <div className="pt-3 px-2 flex flex-col gap-2 border-t border-white/[0.08] mt-2">
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                 <Button className="w-full justify-center" variant="primary">
                   Request Technical Quote

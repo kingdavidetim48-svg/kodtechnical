@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost" | "outline";
+  variant?: "primary" | "secondary" | "ghost" | "outline" | "gold" | "dark";
   size?: "sm" | "md" | "lg";
   icon?: React.ReactNode;
 }
@@ -11,7 +11,7 @@ export interface ButtonProps
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", icon, children, disabled, ...props }, ref) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-semibold uppercase tracking-wider transition-all duration-200 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-primary focus-visible:ring-offset-2 focus-visible:ring-offset-navy-void disabled:opacity-50 disabled:pointer-events-none active:translate-y-[1px]";
+      "relative inline-flex items-center justify-center font-semibold uppercase tracking-wider transition-all duration-200 ease-industrial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal-void disabled:opacity-50 disabled:pointer-events-none active:translate-y-[1px] group";
 
     const sizeStyles = {
       sm: "h-9 px-3.5 text-xs rounded-sm gap-1.5",
@@ -21,13 +21,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary:
-        "bg-amber-primary text-navy-void hover:bg-amber-hover border border-amber-hover shadow-sm hover:shadow-amber-glow transition-all",
+        "bg-gradient-to-r from-[#C5A059] via-[#D4AF37] to-[#B28D46] text-[#06080D] font-bold border border-[#F4E7BD]/50 shadow-sm hover:shadow-gold-glow hover:brightness-105 transition-all",
+      gold:
+        "bg-gradient-to-r from-[#C5A059] via-[#D4AF37] to-[#B28D46] text-[#06080D] font-bold border border-[#F4E7BD]/50 shadow-sm hover:shadow-gold-glow hover:brightness-105 transition-all",
       secondary:
-        "bg-navy-surface text-industrial-white border border-white/10 hover:border-amber-primary/60 hover:bg-navy-elevated transition-colors",
+        "bg-[#111622] text-[#F8FAFC] border border-white/10 hover:border-[#C5A059]/60 hover:bg-[#171E2D] hover:text-white transition-all shadow-sm",
       ghost:
-        "bg-transparent text-amber-primary hover:text-industrial-white font-mono lowercase tracking-normal px-0 hover:bg-transparent transition-colors",
+        "bg-transparent text-[#C5A059] hover:text-[#F4E7BD] font-mono lowercase tracking-normal px-0 hover:bg-transparent transition-colors",
       outline:
-        "bg-transparent text-industrial-white border border-white/20 hover:border-amber-primary hover:text-amber-primary transition-colors",
+        "bg-transparent text-[#F8FAFC] border border-white/20 hover:border-[#C5A059] hover:text-[#C5A059] transition-all",
+      dark:
+        "bg-[#0E121A] text-[#FDFCF7] border border-[#0E121A] hover:bg-[#1A1D20] hover:border-[#C5A059]/50 transition-all",
     };
 
     return (
